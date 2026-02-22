@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:vormirex/view/utils/utils.dart';
+import 'package:vormirex/view/utils/Colour_Text.dart';
 import 'package:vormirex/view/onboarding_screen/onboarding_screen_second.dart';
 
 class OnboardingScreenFirst extends StatelessWidget {
@@ -41,7 +41,7 @@ class OnboardingScreenFirst extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(16),
                   child: Image.asset(
-                    'assets/icons/human.png',
+                    'assets/icons/onboarding_image.png',
                     fit: BoxFit.cover,
                   ),
                 ),

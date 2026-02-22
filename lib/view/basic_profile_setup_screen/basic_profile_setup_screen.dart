@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:vormirex/view/basic_profile_setup_screen/basic_profile_setup_second_screen.dart';
-import 'package:vormirex/view/utils/utils.dart';
+import 'package:vormirex/view/utils/Colour_Text.dart';
 
 class SetupProfileScreen extends StatefulWidget {
   const SetupProfileScreen({Key? key}) : super(key: key);

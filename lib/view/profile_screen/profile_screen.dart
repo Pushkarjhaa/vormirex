@@ -9,9 +9,9 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   bool notificationsEnabled = true;
-  bool languageEnabled = true;
   bool subscriptionEnabled = true;
   bool rateAppEnabled = true;
+  String selectedLanguage = 'English';
 
   @override
   Widget build(BuildContext context) {
@@ -57,18 +57,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
                 const SizedBox(height: 12),
 
-                // Language Card
-                _buildSettingCard(
-                  title: 'Language',
-                  subtitle: 'English',
-                  icon: Icons.language,
-                  value: languageEnabled,
-                  onChanged: (val) {
-                    setState(() {
-                      languageEnabled = val;
-                    });
-                  },
-                ),
+                // Language Card with Dropdown
+                _buildLanguageCard(),
                 const SizedBox(height: 12),
 
                 // Subscription Card
@@ -346,6 +336,115 @@ class _ProfileScreenState extends State<ProfileScreen> {
       child: Text(
         text,
         style: const TextStyle(color: Colors.white, fontSize: 14),
+      ),
+    );
+  }
+
+  // New Language Card with Dropdown
+  Widget _buildLanguageCard() {
+    return Container(
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: const Color(0xFF1E1E1E),
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: const Color(0xFF3A3A3A), width: 1),
+      ),
+      child: Row(
+        children: [
+          Container(
+            width: 50,
+            height: 50,
+            decoration: BoxDecoration(
+              color: const Color(0xFF2A2A2A),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: const Icon(Icons.language, color: Colors.white70, size: 28),
+          ),
+          const SizedBox(width: 16),
+          const Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Language',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                SizedBox(height: 4),
+                Text(
+                  'App display language',
+                  style: TextStyle(color: Colors.white60, fontSize: 14),
+                ),
+              ],
+            ),
+          ),
+          PopupMenuButton<String>(
+            initialValue: selectedLanguage,
+            color: const Color(0xFF2A2A2A),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+              side: BorderSide(color: Colors.grey[700]!, width: 1),
+            ),
+            offset: const Offset(0, 50),
+            onSelected: (String value) {
+              setState(() {
+                selectedLanguage = value;
+              });
+            },
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+              decoration: BoxDecoration(
+                color: const Color(0xFF2A2A2A),
+                borderRadius: BorderRadius.circular(8),
+                border: Border.all(color: Colors.grey[600]!, width: 1),
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    selectedLanguage,
+                    style: const TextStyle(color: Colors.white, fontSize: 14),
+                  ),
+                  const SizedBox(width: 8),
+                  const Icon(
+                    Icons.arrow_drop_down,
+                    color: Colors.white,
+                    size: 20,
+                  ),
+                ],
+              ),
+            ),
+            itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
+              _buildPopupMenuItem('English', selectedLanguage == 'English'),
+              _buildPopupMenuItem('Hindi', selectedLanguage == 'Hindi'),
+              _buildPopupMenuItem('Kannada', selectedLanguage == 'Kannada'),
+              _buildPopupMenuItem('Tamil', selectedLanguage == 'Tamil'),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  PopupMenuItem<String> _buildPopupMenuItem(String text, bool isSelected) {
+    return PopupMenuItem<String>(
+      value: text,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            text,
+            style: TextStyle(
+              color: isSelected ? const Color(0xFF6aece1) : Colors.white,
+              fontSize: 14,
+            ),
+          ),
+          if (isSelected)
+            const Icon(Icons.check, color: Color(0xFF6aece1), size: 20),
+        ],
       ),
     );
   }
