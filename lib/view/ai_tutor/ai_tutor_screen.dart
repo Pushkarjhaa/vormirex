@@ -19,7 +19,7 @@ class _AITutorScreenState extends State<AITutorScreen> {
 
   final List<Widget> _pages = [
     const HomeScreen(),
-    const CoursesScreen(),
+    const ExploreCoursesScreen(),
     const AITutorBody(),
     const ProgressScreen(),
     const ProfileScreen(),

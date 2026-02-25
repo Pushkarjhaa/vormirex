@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vormirex/view/course_screen/courses_screen.dart';
 import 'package:vormirex/view/splash_screen.dart';
 import 'package:vormirex/view/auth_screen/signin_signup_screen.dart';
 import 'package:vormirex/view/basic_profile_setup_screen/basic_profile_setup_screen.dart';
@@ -14,10 +15,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Vormirex',
-      home: SplashScreen(),
-   
+      // home: SplashScreen(),
+      home: ExploreCoursesScreen(),
       // home: PaymentSuccessScreen(),
-     
+
       // home: PaymentScreen(),
       // home: ProfileScreen(),
       debugShowCheckedModeBanner: false,
